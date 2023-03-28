@@ -18,8 +18,8 @@ export const register = async (req, res) => {
 
     const doc = new UserModel({
       email: req.body.email,
-      fullName: req.body.fullName,
-      avatarUrl: req.body.avatarUrl,
+      firstName: req.body.firstName,
+      secondName: req.body.secondName,
       passwordHash: hash,
     });
 
@@ -110,7 +110,7 @@ export const getMe = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      message: "Не удалось зарегистрироваться",
+      message: "Не удалось получить данные",
     });
   }
 };
