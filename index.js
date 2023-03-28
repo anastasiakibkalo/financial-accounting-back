@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send("Hello world");
+  res.send("Financial accounting");
 });
 
 app.post("/auth/login", loginValidation, UserController.login);
