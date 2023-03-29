@@ -2,11 +2,15 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 
-import { registerValidation, loginValidation } from "./validations.js";
+import {
+  registerValidation,
+  loginValidation,
+  categoryCreateValidation,
+} from "./validations.js";
 
-import checkAuth from "./utils/checkAuth.js";
+import { handleValidationErrors, checkAuth } from "./utils/index.js";
 
-import * as UserController from "./controllers/UserController.js";
+import { UserController, CategoryController } from "./controllers/index.js";
 
 mongoose
   .connect(
@@ -29,6 +33,16 @@ app.get("/", (req, res) => {
 app.post("/auth/login", loginValidation, UserController.login);
 app.post("/auth/register", registerValidation, UserController.register);
 app.get("/auth/me", checkAuth, UserController.getMe);
+
+// CATEGORY CONTROLLERS
+app.get("/categories", CategoryController.getAll);
+app.post(
+  "/categories",
+  checkAuth,
+  categoryCreateValidation,
+  handleValidationErrors,
+  CategoryController.create
+);
 
 app.listen(4444, (err) => {
   if (err) {
