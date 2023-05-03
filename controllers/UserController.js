@@ -94,7 +94,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const getMe = async (req, res) => {
+export const getUserInformation = async (req, res) => {
   try {
     const user = await User.findById(req.userId);
 
@@ -108,7 +108,6 @@ export const getMe = async (req, res) => {
 
     res.json(userData);
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       message: "Не удалось получить данные",
     });
