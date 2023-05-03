@@ -14,6 +14,8 @@ export const loginValidation = [
 
 export const categoryCreateValidation = [
   body("title", "Title is required").isLength({ min: 3 }).isString(),
-  body("value", "Value is required").isNumeric(),
-  body("imageUrl", "Image's url is wrong").optional().isString(),
+  body("amount", "Amount is non a number").isNumeric(),
+  body("budget", "Budget is non a number").isNumeric(),
+  body("icon", "Icon is wrong").isString(),
+  body("currency", "Currency is required").isString(),
 ];

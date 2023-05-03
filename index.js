@@ -32,17 +32,18 @@ app.get("/", (req, res) => {
 
 app.post("/auth/login", loginValidation, UserController.login);
 app.post("/auth/register", registerValidation, UserController.register);
-app.get("/auth/me", checkAuth, UserController.getMe);
+app.get("/auth/user", checkAuth, UserController.getUserInformation);
 
 // CATEGORY CONTROLLERS
-app.get("/categories", CategoryController.getAll);
+app.get("/categories", CategoryController.getUserCategories);
 app.post(
   "/categories",
   checkAuth,
   categoryCreateValidation,
   handleValidationErrors,
-  CategoryController.create
+  CategoryController.createCategory
 );
+app.delete("/categories/:id", checkAuth, CategoryController.deleteCategory);
 
 app.listen(4444, (err) => {
   if (err) {
